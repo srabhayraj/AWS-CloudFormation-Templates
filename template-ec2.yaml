@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Template for creating an EC2 instance
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0f58b397bc5c1f2e8
+      InstanceType: t2.micro
+      KeyName: demo_ec2-key-pair
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: abhay-s3-bucket-demo-2000
+      VersioningConfiguration:
+        Status: Enabled
+Outputs:
+  PublicIP:
+    Description: Public IP address of the EC2 instance
+    Value: !GetAtt EC2Instance.PublicIp
